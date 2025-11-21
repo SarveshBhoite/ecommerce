@@ -101,6 +101,8 @@ export default function CartPage() {
             : item
         )
       );
+        window.dispatchEvent(new Event("cart-updated"));
+
       showToastMessage("Quantity updated");
     }
   };
@@ -112,6 +114,8 @@ export default function CartPage() {
       setCartItems((prev) =>
         prev.filter((item) => item.productId !== productId)
       );
+        window.dispatchEvent(new Event("cart-updated"));
+
       showToastMessage("Item removed");
     }
   };

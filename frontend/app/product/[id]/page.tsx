@@ -58,6 +58,8 @@ export default function ProductPage() {
 
     if (product) {
       addToCart(product.id)
+        window.dispatchEvent(new Event("cart-updated"));
+
       showToastMessage(`Added ${product.name} to cart`)
     }
   }

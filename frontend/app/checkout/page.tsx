@@ -127,6 +127,8 @@ export default function CheckoutPage() {
           Authorization: `Bearer ${token}`,
         },
       });
+      window.dispatchEvent(new Event("cart-updated"));
+
 
       setOrderPlaced(true);
       showToastMessage("Order placed successfully!");
