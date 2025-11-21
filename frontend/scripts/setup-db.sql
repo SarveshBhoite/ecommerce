@@ -52,11 +52,11 @@ CREATE TABLE IF NOT EXISTS order_items (
 
 -- Insert sample products
 INSERT INTO products (name, description, price, image_url, category) VALUES
-('Minimalist Backpack', 'Premium lightweight backpack perfect for daily use', 89.99, '/placeholder.svg?height=400&width=400', 'accessories'),
-('Classic Watch', 'Elegant timepiece with leather strap', 149.99, '/placeholder.svg?height=400&width=400', 'accessories'),
-('Cotton T-Shirt', 'Comfortable everyday t-shirt in neutral colors', 29.99, '/placeholder.svg?height=400&width=400', 'clothing'),
-('Denim Jeans', 'Timeless blue denim with perfect fit', 79.99, '/placeholder.svg?height=400&width=400', 'clothing'),
-('Wireless Earbuds', 'High-quality sound with noise cancellation', 129.99, '/placeholder.svg?height=400&width=400', 'electronics'),
-('Sunglasses', 'UV protection with stylish frame', 99.99, '/placeholder.svg?height=400&width=400', 'accessories'),
-('Sneakers', 'Comfortable walking shoes with cushioning', 119.99, '/placeholder.svg?height=400&width=400', 'clothing'),
-('Phone Case', 'Protective case with minimalist design', 24.99, '/placeholder.svg?height=400&width=400', 'electronics');
+('Minimalist Backpack', 'Premium lightweight backpack perfect for daily use', 89.99, '/classicwatch.jpg?height=400&width=400', 'accessories'),
+('Classic Watch', 'Elegant timepiece with leather strap', 149.99, '/classicwatch.jpg?height=400&width=400', 'accessories'),
+('Cotton T-Shirt', 'Comfortable everyday t-shirt in neutral colors', 29.99, '/classicwatch.jpg?height=400&width=400', 'clothing'),
+('Denim Jeans', 'Timeless blue denim with perfect fit', 79.99, '/classicwatch.jpg?height=400&width=400', 'clothing'),
+('Wireless Earbuds', 'High-quality sound with noise cancellation', 129.99, '/classicwatch.jpg?height=400&width=400', 'electronics'),
+('Sunglasses', 'UV protection with stylish frame', 99.99, '/classicwatch.jpg?height=400&width=400', 'accessories'),
+('Sneakers', 'Comfortable walking shoes with cushioning', 119.99, '/classicwatch.jpg?height=400&width=400', 'clothing'),
+('Phone Case', 'Protective case with minimalist design', 24.99, '/classicwatch.jpg?height=400&width=400', 'electronics');

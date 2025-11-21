@@ -134,7 +134,7 @@ export default function CartPage() {
                 >
                   {/* Product Image */}
                   <img
-                    src={item.product.image_url || "/placeholder.svg"}
+                    src={item.product.image_url || "/classicwatch.jpg"}
                     alt={item.product.name}
                     className="w-24 h-24 rounded-lg object-cover bg-secondary flex-shrink-0 hover:scale-110 transition-transform duration-300"
                   />

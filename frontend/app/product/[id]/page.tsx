@@ -93,7 +93,7 @@ export default function ProductPage() {
           {/* Product Image */}
           <div className="bg-secondary rounded-xl overflow-hidden h-96 md:h-full flex items-center justify-center">
             <img
-              src={product.image_url || "/placeholder.svg"}
+              src={product.image_url || "/classicwatch.jpg"}
               alt={product.name}
               className="w-full h-full object-cover"
             />
