@@ -1,0 +1,53 @@
+[00:00:00.979] Server  LOG     
+[00:00:00.980] Server  LOG        We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
+[00:00:00.980] Server  LOG        The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
+
+[00:00:00.980] Server  LOG        	- include was updated to add '.next/dev/types/**/*.ts'
+[00:00:00.980] Server  LOG     
+[00:00:00.980] Server  LOG        The following mandatory changes were made to your tsconfig.json:
+
+[00:00:00.981] Server  LOG        	- jsx was set to react-jsx (next.js uses the React automatic runtime)
+[00:00:00.981] Server  LOG     
+[00:00:01.201] Server  LOG      ✓ Ready in 738ms
+[00:00:25.630] Server  LOG      ○ Compiling / ...
+[00:00:26.622] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:26.780] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
+          <SegmentViewNode type="page" pagePath="/Desktop/W...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function HomePage} serverProvidedParams={{...}}>
+              <HomePage params={Promise} searchParams={Promise}>
+                <main className="min-h-scre...">
+                  <Navbar>
+                    <nav className="sticky top...">
+                      <div className="max-w-7xl ...">
+                        <LinkComponent>
+                        <div className="flex items...">
+                          <LinkComponent href="/" className="flex items...">
++                           <a
++                             className="flex items-center gap-2 text-foreground hover:text-primary transition-all dur..."
++                             ref={function}
++                             onClick={function onClick}
++                             onMouseEnter={function onMouseEnter}
++                             onTouchStart={function onTouchStart}
++                             href="/"
++                           >
+                          ...
+                  ...
+          ...
+        ...
+
