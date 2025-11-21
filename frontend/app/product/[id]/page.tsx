@@ -111,7 +111,7 @@ export default function ProductPage() {
               <div className="space-y-6">
                 <div>
                   <p className="text-sm text-muted-foreground mb-2">Price</p>
-                  <p className="text-5xl font-bold text-primary">${product.price}</p>
+                  <p className="text-5xl font-bold text-primary">₹{product.price}</p>
                 </div>
 
                 <button onClick={handleAddToCart} className="w-full btn-primary py-4 text-lg rounded-lg font-semibold">
