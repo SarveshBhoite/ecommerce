@@ -3,19 +3,23 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/store";
-import { ShoppingCart, LogOut, Home, LogIn, UserPlus } from "lucide-react";
-import { useState, useEffect } from "react";
+import {
+  ShoppingCart,
+  LogOut,
+  Home,
+  LogIn,
+  UserPlus,
+} from "lucide-react";
+import { useEffect, useState } from "react";
 
 export function Navbar() {
   const { logout, isAuthenticated } = useAuth();
   const router = useRouter();
   const [cartCount, setCartCount] = useState(0);
 
-  // 🔥 Fetch cart count from MongoDB
   const fetchCartCount = async () => {
     try {
       const token = localStorage.getItem("token");
-
       if (!token) return;
 
       const response = await fetch("/api/cart", {
@@ -32,16 +36,13 @@ export function Navbar() {
         setCartCount(totalItems);
       }
     } catch (error) {
-      console.error("Failed to load cart count:", error);
+      console.error("Cart count error:", error);
     }
   };
 
   useEffect(() => {
-    if (isAuthenticated()) {
-      fetchCartCount();
-    }
+    if (isAuthenticated()) fetchCartCount();
 
-    // Listen for global cart updates
     const handler = () => fetchCartCount();
     window.addEventListener("cart-updated", handler);
 
@@ -54,73 +55,124 @@ export function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border shadow-sm">
+    <nav className="
+      sticky top-0 z-50 
+      bg-white/60 dark:bg-black/40 
+      backdrop-blur-xl 
+      border-b border-border/40 
+      shadow-md
+    ">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+
         {/* Logo */}
-        <Link href="/" className="group flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+        <Link href="/" className="group flex items-center gap-3 select-none">
+          <div className="
+            w-10 h-10 rounded-xl 
+            bg-gradient-to-br from-primary to-accent 
+            flex items-center justify-center shadow-lg
+          ">
             <span className="text-white font-bold text-sm">SH</span>
           </div>
-          <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent group-hover:scale-105 transition-transform">
+
+          <span className="
+            text-2xl font-extrabold
+            bg-gradient-to-r from-primary to-accent 
+            bg-clip-text text-transparent
+            transition-all duration-300 
+            group-hover:scale-110
+          ">
             ShopHub
           </span>
         </Link>
 
-        {/* Right Side Buttons */}
-        <div className="flex items-center gap-6">
-          {/* 🚫 NOT LOGGED IN — Show Login & Register */}
+        {/* Right Buttons */}
+        <div className="flex items-center gap-4 sm:gap-6">
+
+          {/* NOT LOGGED IN — LOGIN & REGISTER */}
           {!isAuthenticated() && (
             <>
               <Link
                 href="/login"
-                className="flex items-center gap-2 px-4 py-2 rounded-lg text-foreground border border-border hover:bg-primary/10 hover:text-primary transition-all font-medium"
+                className="
+                  flex items-center gap-2 px-4 py-2 rounded-full
+                  border border-border bg-card/60 backdrop-blur
+                  hover:border-primary hover:text-primary 
+                  transition-all duration-200 hover:scale-105
+                "
               >
                 <LogIn size={18} />
-                <span className="hidden sm:inline">Login</span>
+                <span className="hidden sm:inline font-medium">Login</span>
               </Link>
 
               <Link
                 href="/register"
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-primary to-accent text-white hover:shadow-lg hover:scale-105 transition-all font-medium"
+                className="
+                  flex items-center gap-2 px-4 py-2 rounded-full 
+                  bg-gradient-to-r from-primary to-accent text-white 
+                  shadow-md hover:shadow-xl 
+                  transition-all duration-200 hover:scale-105
+                "
               >
                 <UserPlus size={18} />
-                <span className="hidden sm:inline">Register</span>
+                <span className="hidden sm:inline font-medium">Register</span>
               </Link>
             </>
           )}
 
-          {/* ✅ LOGGED IN — Show Browse, Cart, Logout */}
+          {/* LOGGED IN */}
           {isAuthenticated() && (
             <>
               <Link
                 href="/"
-                className="flex items-center gap-2 text-foreground hover:text-primary transition-all duration-200 hover:scale-105"
+                className="
+                  flex items-center gap-2 px-3 py-2 rounded-full
+                  hover:bg-primary/10 hover:text-primary 
+                  transition-all duration-200 hover:scale-105
+                "
               >
                 <Home size={20} />
-                <span className="hidden sm:inline">Browse</span>
+                <span className="hidden sm:inline font-medium">Browse</span>
               </Link>
 
+              {/* Cart */}
               <Link
                 href="/cart"
-                className="relative text-foreground hover:text-primary transition-all duration-200 hover:scale-110 group"
+                className="
+                  relative flex items-center
+                  hover:text-primary hover:scale-110 
+                  transition-all duration-200
+                "
               >
-                <ShoppingCart
-                  size={24}
-                  className="group-hover:rotate-12 transition-transform"
-                />
+                <ShoppingCart size={26} className="transition-transform" />
+
                 {cartCount > 0 && (
-                  <span className="absolute -top-3 -right-3 bg-gradient-to-r from-primary to-accent text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center animate-pulse">
+                  <span
+                    className="
+                      absolute -top-2.5 -right-3 
+                      bg-gradient-to-r from-primary to-accent 
+                      text-white text-xs font-bold 
+                      rounded-full w-6 h-6 flex items-center justify-center
+                      shadow-md animate-bounce
+                    "
+                  >
                     {cartCount}
                   </span>
                 )}
               </Link>
 
+              {/* Logout */}
               <button
                 onClick={handleLogout}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-destructive to-red-500 text-destructive-foreground hover:shadow-lg hover:scale-105 transition-all font-medium"
+                className="
+                  flex items-center gap-2 px-4 py-2 rounded-full
+                  bg-gradient-to-r from-destructive to-red-500 
+                  text-white font-medium 
+                  shadow-md hover:shadow-xl
+                  transition-all duration-200 hover:scale-105
+                "
               >
                 <LogOut size={18} />
-                <span className="hidden sm:inline">Logout</span>
+                <span className="hidden sm:inline font-medium">Logout</span>
               </button>
             </>
           )}
