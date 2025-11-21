@@ -667,3 +667,75 @@ https://react.dev/link/hydration-mismatch
 [00:49:11.749] Server  LOG     🔄 Using existing MongoDB connection
 [00:49:11.776] Server  LOG     🔄 Using existing MongoDB connection
 [00:49:11.786] Server  LOG     🔄 Using existing MongoDB connection
+[00:51:16.400] Server  LOG     🔄 Using existing MongoDB connection
+[00:51:16.424] Server  LOG     🔄 Using existing MongoDB connection
+[00:51:16.457] Server  LOG     🔄 Using existing MongoDB connection
+[00:51:16.474] Server  LOG     🔄 Using existing MongoDB connection
+[00:51:22.099] Server  LOG     🔄 Using existing MongoDB connection
+[00:51:22.117] Server  LOG     🔄 Using existing MongoDB connection
+[00:51:22.143] Server  LOG      ✓ Compiled in 124ms
+[00:51:35.798] Server  LOG     🔄 Using existing MongoDB connection
+[00:51:35.807] Server  LOG     🔄 Using existing MongoDB connection
+[00:51:35.829] Server  LOG     🔄 Using existing MongoDB connection
+[00:51:35.845] Server  LOG     🔄 Using existing MongoDB connection
+[00:51:38.687] Server  LOG     🔄 Using existing MongoDB connection
+[00:51:38.711] Server  LOG     🔄 Using existing MongoDB connection
+[00:51:38.743] Server  LOG     🔄 Using existing MongoDB connection
+[00:51:38.757] Server  LOG     🔄 Using existing MongoDB connection
+[00:51:47.695] Server  LOG     🔄 Using existing MongoDB connection
+[00:51:47.706] Server  LOG     🔄 Using existing MongoDB connection
+[00:51:47.730] Server  LOG     🔄 Using existing MongoDB connection
+[00:51:47.746] Server  LOG     🔄 Using existing MongoDB connection
+[00:52:07.614] Server  LOG     🔄 Using existing MongoDB connection
+[00:52:07.659] Server  LOG     🔄 Using existing MongoDB connection
+[00:52:07.696] Server  LOG     🔄 Using existing MongoDB connection
+[00:52:07.723] Server  LOG     🔄 Using existing MongoDB connection
+[00:52:07.752] Server  LOG     🔄 Using existing MongoDB connection
+[00:52:07.798] Server  LOG     🔄 Using existing MongoDB connection
+[00:53:06.509] Server  LOG      ✓ Compiled in 165ms
+[00:53:19.213] Server  LOG     🔄 Using existing MongoDB connection
+[00:53:19.264] Server  LOG     🔄 Using existing MongoDB connection
+[00:53:19.311] Server  LOG     🔄 Using existing MongoDB connection
+[00:53:19.359] Server  LOG     🔄 Using existing MongoDB connection
+[00:54:36.609] Server  LOG      ✓ Compiled in 147ms
+[00:54:48.109] Server  LOG      ✓ Compiled in 82ms
+[00:54:54.686] Server  LOG      ✓ Compiled in 81ms
+[00:55:07.259] Server  LOG      ✓ Compiled in 62ms
+[00:55:09.208] Server  LOG      ✓ Compiled in 74ms
+[00:55:13.907] Server  LOG      ✓ Compiled in 65ms
+[00:55:27.515] Server  LOG     🔄 Using existing MongoDB connection
+[00:55:27.521] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__d0c7fb43._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:55:27.527] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:55:27.529] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\1f110_aea1c2b9._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:55:27.530] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:55:27.531] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:55:27.532] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:55:27.533] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:55:27.534] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:55:27.536] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:55:27.538] Server  ERROR   DELETE /api/cart error: SyntaxError: Unexpected end of JSON input
+[00:55:27.555] Server  LOG     🔄 Using existing MongoDB connection
+[00:55:30.089] Server  LOG     🔄 Using existing MongoDB connection
+[00:55:30.098] Server  LOG     🔄 Using existing MongoDB connection
+[00:55:30.120] Server  LOG     🔄 Using existing MongoDB connection
+[00:55:30.134] Server  LOG     🔄 Using existing MongoDB connection
+[00:55:33.532] Server  LOG     🔄 Using existing MongoDB connection
+[00:55:33.596] Server  LOG     🔄 Using existing MongoDB connection
+[00:55:33.633] Server  LOG     🔄 Using existing MongoDB connection
+[00:55:33.661] Server  LOG     🔄 Using existing MongoDB connection
+[00:55:33.688] Server  LOG     🔄 Using existing MongoDB connection
+[00:55:33.731] Server  LOG     🔄 Using existing MongoDB connection
+[00:56:00.266] Server  LOG     🔄 Using existing MongoDB connection
+[00:56:00.274] Server  LOG     🔄 Using existing MongoDB connection
+[00:56:00.299] Server  LOG     🔄 Using existing MongoDB connection
+[00:56:00.310] Server  LOG     🔄 Using existing MongoDB connection
+[00:56:04.615] Server  LOG     🔄 Using existing MongoDB connection
+[00:56:04.646] Server  LOG     🔄 Using existing MongoDB connection
+[00:56:04.688] Server  LOG     🔄 Using existing MongoDB connection
+[00:56:04.711] Server  LOG     🔄 Using existing MongoDB connection
+[00:56:04.741] Server  LOG     🔄 Using existing MongoDB connection
+[00:56:04.790] Server  LOG     🔄 Using existing MongoDB connection
+[00:56:12.301] Server  LOG     🔄 Using existing MongoDB connection
+[00:56:12.346] Server  LOG     🔄 Using existing MongoDB connection
+[00:56:12.388] Server  LOG     🔄 Using existing MongoDB connection
+[00:56:12.437] Server  LOG     🔄 Using existing MongoDB connection
