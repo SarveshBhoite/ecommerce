@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/store";
-import { ShoppingCart, LogOut, Home } from "lucide-react";
+import { ShoppingCart, LogOut, Home, LogIn, UserPlus } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export function Navbar() {
@@ -56,6 +56,7 @@ export function Navbar() {
   return (
     <nav className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border shadow-sm">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        {/* Logo */}
         <Link href="/" className="group flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
             <span className="text-white font-bold text-sm">SH</span>
@@ -65,7 +66,30 @@ export function Navbar() {
           </span>
         </Link>
 
+        {/* Right Side Buttons */}
         <div className="flex items-center gap-6">
+          {/* 🚫 NOT LOGGED IN — Show Login & Register */}
+          {!isAuthenticated() && (
+            <>
+              <Link
+                href="/login"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg text-foreground border border-border hover:bg-primary/10 hover:text-primary transition-all font-medium"
+              >
+                <LogIn size={18} />
+                <span className="hidden sm:inline">Login</span>
+              </Link>
+
+              <Link
+                href="/register"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-primary to-accent text-white hover:shadow-lg hover:scale-105 transition-all font-medium"
+              >
+                <UserPlus size={18} />
+                <span className="hidden sm:inline">Register</span>
+              </Link>
+            </>
+          )}
+
+          {/* ✅ LOGGED IN — Show Browse, Cart, Logout */}
           {isAuthenticated() && (
             <>
               <Link
@@ -93,7 +117,7 @@ export function Navbar() {
 
               <button
                 onClick={handleLogout}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-destructive to-red-500 text-destructive-foreground hover:shadow-lg hover:scale-105 transition-all duration-200 font-medium"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-destructive to-red-500 text-destructive-foreground hover:shadow-lg hover:scale-105 transition-all font-medium"
               >
                 <LogOut size={18} />
                 <span className="hidden sm:inline">Logout</span>

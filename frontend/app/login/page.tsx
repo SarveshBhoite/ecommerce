@@ -60,7 +60,7 @@ export default function LoginPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="inline-block w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-4 shadow-lg">
-            <Lock size={24} className="text-white" />
+            <Lock size={46} className="text-white" />
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold text-balance">Welcome Back</h1>
           <p className="text-muted-foreground mt-2">Sign in to access your account</p>

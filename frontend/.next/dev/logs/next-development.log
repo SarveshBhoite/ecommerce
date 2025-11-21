@@ -351,3 +351,135 @@ https://react.dev/link/hydration-mismatch
 [00:18:58.350] Server  LOG     🔄 Using existing MongoDB connection
 [00:18:58.369] Server  LOG     🔄 Using existing MongoDB connection
 [00:18:58.390] Server  LOG     🔄 Using existing MongoDB connection
+[00:20:08.118] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:20:08.183] Server  LOG     🔄 Using existing MongoDB connection
+[00:20:08.207] Server  LOG     🔄 Using existing MongoDB connection
+[00:20:08.289] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
+          <SegmentViewNode type="page" pagePath="/Desktop/W...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function HomePage} serverProvidedParams={{...}}>
+              <HomePage params={Promise} searchParams={Promise}>
+                <main className="min-h-scre...">
+                  <Navbar>
+                    <nav className="sticky top...">
+                      <div className="max-w-7xl ...">
+                        <LinkComponent>
+                        <div className="flex items...">
+                          <LinkComponent href="/" className="flex items...">
++                           <a
++                             className="flex items-center gap-2 text-foreground hover:text-primary transition-all dur..."
++                             ref={function}
++                             onClick={function onClick}
++                             onMouseEnter={function onMouseEnter}
++                             onTouchStart={function onTouchStart}
++                             href="/"
++                           >
+                          ...
+                  ...
+          ...
+        ...
+
+[00:20:22.014] Server  LOG     🔄 Using existing MongoDB connection
+[00:20:22.043] Server  LOG     🔄 Using existing MongoDB connection
+[00:20:22.074] Server  LOG     🔄 Using existing MongoDB connection
+[00:20:22.101] Server  LOG     🔄 Using existing MongoDB connection
+[00:21:24.759] Server  LOG      ✓ Compiled in 61ms
+[00:21:28.602] Server  LOG      ✓ Compiled in 51ms
+[00:21:30.958] Server  LOG      ✓ Compiled in 50ms
+[00:21:35.409] Server  LOG      ✓ Compiled in 73ms
+[00:21:35.514] Browser ERROR   ./Desktop/WD/ecommerce/frontend/app/login/page.tsx:63:27
+Parsing ecmascript source code failed
+  61 |         <div className="text-center mb-8">
+  62 |           <div className="inline-block w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-4 shadow-lg">
+> 63 |             <Lock size={} className="text-white" />
+     |                           ^^^^^^^^^
+  64 |           </div>
+  65 |           <h1 className="text-3xl sm:text-4xl font-bold text-balance">Welcome Back</h1>
+  66 |           <p className="text-muted-foreground mt-2">Sign in to access your account</p>
+
+Expected '</', got 'className'
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/WD/ecommerce/frontend/app/login/page.tsx [Client Component Browser]
+    ./Desktop/WD/ecommerce/frontend/app/login/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/WD/ecommerce/frontend/app/login/page.tsx [Client Component SSR]
+    ./Desktop/WD/ecommerce/frontend/app/login/page.tsx [Server Component]
+[00:21:44.322] Server  LOG      ✓ Compiled in 61ms
+[00:21:52.755] Server  LOG      ✓ Compiled in 52ms
+[00:22:40.102] Server  LOG      ✓ Compiled in 66ms
+[00:22:49.260] Server  LOG     🔄 Using existing MongoDB connection
+[00:22:49.672] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:22:49.672] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <Suspense name="/" fallback={<Fragment>}>
+      <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+        <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+          <RedirectBoundary>
+            <RedirectErrorBoundary router={{...}}>
+              <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
+                <SegmentViewNode type="page" pagePath="/Desktop/W...">
+                  <SegmentTrieNode>
+                  <ClientPageRoot Component={function HomePage} serverProvidedParams={{...}}>
+                    <HomePage params={Promise} searchParams={Promise}>
+                      <main className="min-h-scre...">
+                        <Navbar>
+                        <div>
+                        <div className="max-w-7xl ...">
+                          <div className="mb-8">
+                            <div className="relative g...">
+                              <Search>
+                              <input
+                                type="text"
+                                placeholder="Search products by name or description..."
+                                value=""
+                                onChange={function onChange}
+                                className="w-full pl-12 pr-4 py-3 rounded-xl bg-secondary text-foreground placeholder-..."
+-                               fdprocessedid="oly676"
+                              >
+                          <div className="mb-8 flex ...">
+                            <button
+                              onClick={function onClick}
+                              className="px-4 py-2 rounded-full font-semibold transition-all duration-200 transform ho..."
+-                             fdprocessedid="ajxsdc"
+                            >
++                             All
+                          ...
+                ...
+              ...
+
+[00:23:01.343] Server  LOG     🔄 Using existing MongoDB connection
+[00:23:01.369] Server  LOG     🔄 Using existing MongoDB connection
+[00:23:11.645] Server  LOG     🔄 Using existing MongoDB connection
+[00:23:11.674] Server  LOG     🔄 Using existing MongoDB connection
+[00:23:13.146] Server  LOG     🔄 Using existing MongoDB connection
+[00:23:13.170] Server  LOG     🔄 Using existing MongoDB connection
+[00:24:59.241] Server  LOG      ✓ Compiled in 163ms
