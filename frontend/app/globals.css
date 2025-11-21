@@ -2,11 +2,10 @@
 @import "tw-animate-css";
 
 /* =====================================================
-   COLOR SYSTEM (Improved Consistency + Fallbacks)
+   COLOR SYSTEM
    ===================================================== */
 @custom-variant dark (&:is(.dark *));
 :root {
-  /* Warm premium palette (kept as you defined) */
   --background: oklch(0.98 0 0);
   --foreground: oklch(0.12 0 0);
 
@@ -35,7 +34,6 @@
   --input: oklch(0.97 0 0);
   --ring: var(--primary);
 
-  /* Elevation system */
   --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
   --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
   --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
@@ -44,7 +42,7 @@
 }
 
 /* =====================================================
-   DARK MODE (Improved Depth + Contrast)
+   DARK MODE
    ===================================================== */
 .dark {
   --background: oklch(0.11 0 0);
@@ -70,14 +68,10 @@
 
   --border: oklch(0.23 0 0);
   --input: oklch(0.18 0 0);
-
-  --shadow-sm: 0 2px 8px rgba(255,255,255,0.04);
-  --shadow-md: 0 4px 16px rgba(255,255,255,0.06);
-  --shadow-lg: 0 8px 24px rgba(255,255,255,0.08);
 }
 
 /* =====================================================
-   THEME EXPORT (Tailwind Mapping)
+   THEME EXPORT
    ===================================================== */
 @theme inline {
   --font-sans: "Geist", system-ui, sans-serif;
@@ -90,15 +84,14 @@
 }
 
 /* =====================================================
-   BASE LAYER (Improved Focus + Smooth Scroll)
+   BASE LAYER (Tailwind v4 FIXED)
    ===================================================== */
 @layer base {
   * {
-    @apply border-border;
+    border-color: var(--border); /* FIXED */
     scroll-behavior: smooth;
   }
 
-  /* Global focus ring (consistent everywhere) */
   :focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 3px;
@@ -111,70 +104,54 @@
 }
 
 /* =====================================================
-   COMPONENTS (Premium UI Enhancements)
+   COMPONENTS
    ===================================================== */
 @layer components {
-  /* Modern button */
   .btn-primary {
-    @apply px-4 py-2 rounded-lg font-semibold text-white
-           bg-gradient-to-r from-primary to-accent
-           shadow-md hover:shadow-lg
-           transition-all duration-200
-           active:scale-95;
+    @apply px-4 py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-primary to-accent
+           shadow-md hover:shadow-lg transition-all duration-200 active:scale-95;
   }
 
-  /* Elevated card */
   .card-hover {
     @apply rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-[1.02];
   }
 
-  /* Smooth fade */
   .fade-in {
     @apply animate-in fade-in duration-500;
   }
 
-  /* Slide up */
   .slide-up {
     @apply animate-in slide-in-from-bottom-4 duration-500;
   }
 
-  /* Soft pop animation */
   .scale-in {
     @apply animate-in zoom-in duration-300;
   }
 
-  /* Premium glow hover */
   .glow-hover:hover {
     box-shadow: 0 0 18px -3px var(--primary);
   }
 
-  /* Glassmorphism */
   .glass-effect {
     @apply backdrop-blur-xl bg-white/10 dark:bg-white/5 border border-white/20;
   }
 
-  /* Gradient border wrapper */
   .gradient-border {
     background: linear-gradient(135deg, var(--primary), var(--accent));
     padding: 2px;
     border-radius: var(--radius-lg);
   }
 
-  /* Shimmer loader */
   .shimmer {
-    @apply relative overflow-hidden bg-foreground/5;
+    @apply relative overflow-hidden;
+    background: var(--foreground)/5;
   }
 
   .shimmer::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,0.25),
-      transparent
-    );
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
     animation: shimmer 1.8s infinite;
   }
 
@@ -185,23 +162,17 @@
 }
 
 /* =====================================================
-   UTILITIES (Extra quality-of-life helpers)
+   UTILITIES
    ===================================================== */
 @layer utilities {
   .center-flex {
     @apply flex items-center justify-center;
   }
 
-  .no-tap-highlight {
-    -webkit-tap-highlight-color: transparent;
-  }
+  .no-tap-highlight { -webkit-tap-highlight-color: transparent; }
 
-  /* For iOS smoothness */
-  .momentum-scroll {
-    -webkit-overflow-scrolling: touch;
-  }
+  .momentum-scroll { -webkit-overflow-scrolling: touch; }
 
-  /* Shadow elevation helpers */
   .shadow-elevate-sm { box-shadow: var(--shadow-sm); }
   .shadow-elevate-md { box-shadow: var(--shadow-md); }
   .shadow-elevate-lg { box-shadow: var(--shadow-lg); }
