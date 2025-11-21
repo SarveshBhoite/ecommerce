@@ -1,90 +1,128 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
-import { Navbar } from "@/components/navbar"
-import { useAuth } from "@/lib/store"
-import { getCart, updateCartQuantity, removeFromCart } from "@/lib/db"
-import Link from "next/link"
-import { Trash2, Plus, Minus, ShoppingBag, ArrowRight } from "lucide-react"
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { Navbar } from "@/components/navbar";
+import { useAuth } from "@/lib/store";
+import {
+  getCart,
+  updateCartQuantity,
+  removeFromCart,
+} from "@/lib/db";
+import Link from "next/link";
+import {
+  Trash2,
+  Plus,
+  Minus,
+  ShoppingBag,
+  ArrowRight,
+} from "lucide-react";
 
 interface Product {
-  id: string
-  name: string
-  price: number
-  image_url: string
+  id: string;
+  name: string;
+  price: number;
+  image_url: string;
 }
 
 interface CartItem {
-  productId: string
-  quantity: number
-  product: Product
+  productId: string;
+  quantity: number;
+  product: Product;
 }
 
 export default function CartPage() {
-  const [cartItems, setCartItems] = useState<CartItem[]>([])
-  const [loading, setLoading] = useState(true)
-  const [toastMessage, setToastMessage] = useState("")
-  const [showToast, setShowToast] = useState(false)
-  const isAuthenticated = useAuth((state) => state.isAuthenticated())
-  const router = useRouter()
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [toastMessage, setToastMessage] = useState("");
+  const [showToast, setShowToast] = useState(false);
+  const isAuthenticated = useAuth((state) => state.isAuthenticated());
+  const router = useRouter();
 
+  // Show toast
+  const showToastMessage = (msg: string) => {
+    setToastMessage(msg);
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 3000);
+  };
+
+  // Load cart from API
   useEffect(() => {
     if (!isAuthenticated) {
-      router.push("/login")
-      return
+      router.push("/login");
+      return;
     }
 
     const loadCart = async () => {
       try {
-        const cart = getCart()
-        const items: CartItem[] = []
+        const cart = await getCart();
+        const items: CartItem[] = [];
 
         for (const [productId, quantity] of Object.entries(cart)) {
-          const response = await fetch(`/api/products/${productId}`)
-          const product = await response.json()
-          items.push({ productId, quantity: quantity as number, product })
+          const response = await fetch(`/api/products/${productId}`);
+          const product = await response.json();
+
+          items.push({
+            productId,
+            quantity: quantity as number,
+            product: {
+              id: product._id || product.id,
+              name: product.name,
+              price: product.price,
+              image_url: product.image_url,
+            },
+          });
         }
 
-        setCartItems(items)
-      } catch (error) {
-        console.error("Failed to load cart:", error)
+        setCartItems(items);
+      } catch (err) {
+        console.error("Cart load error:", err);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
-    loadCart()
-  }, [isAuthenticated, router])
+    loadCart();
+  }, [isAuthenticated, router]);
 
-  const showToastMessage = (message: string) => {
-    setToastMessage(message)
-    setShowToast(true)
-    setTimeout(() => setShowToast(false), 3000)
-  }
-
-  const handleUpdateQuantity = (productId: string, newQuantity: number) => {
+  // Update quantity
+  const handleUpdateQuantity = async (productId: string, newQuantity: number) => {
     if (newQuantity <= 0) {
-      handleRemoveItem(productId)
-      return
+      handleRemoveItem(productId);
+      return;
     }
 
-    updateCartQuantity(productId, newQuantity)
-    setCartItems((prev) =>
-      prev.map((item) => (item.productId === productId ? { ...item, quantity: newQuantity } : item)),
-    )
-    showToastMessage("Quantity updated")
-  }
+    const success = await updateCartQuantity(productId, newQuantity);
+    if (success) {
+      setCartItems((prev) =>
+        prev.map((item) =>
+          item.productId === productId
+            ? { ...item, quantity: newQuantity }
+            : item
+        )
+      );
+      showToastMessage("Quantity updated");
+    }
+  };
 
-  const handleRemoveItem = (productId: string) => {
-    removeFromCart(productId)
-    setCartItems((prev) => prev.filter((item) => item.productId !== productId))
-    showToastMessage("Item removed from cart")
-  }
+  // Remove item
+  const handleRemoveItem = async (productId: string) => {
+    const success = await removeFromCart(productId);
+    if (success) {
+      setCartItems((prev) =>
+        prev.filter((item) => item.productId !== productId)
+      );
+      showToastMessage("Item removed");
+    }
+  };
 
-  const subtotal = cartItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0)
-  const tax = Math.round(subtotal * 0.18) // 18% GST
-  const total = subtotal + tax
+  // Calculations
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.product.price * item.quantity,
+    0
+  );
+  const tax = Math.round(subtotal * 0.18);
+  const total = subtotal + tax;
 
   if (loading) {
     return (
@@ -93,11 +131,13 @@ export default function CartPage() {
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center">
             <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-muted-foreground font-medium">Loading your cart...</p>
+            <p className="text-muted-foreground font-medium">
+              Loading your cart...
+            </p>
           </div>
         </div>
       </main>
-    )
+    );
   }
 
   return (
@@ -112,9 +152,14 @@ export default function CartPage() {
 
         {cartItems.length === 0 ? (
           <div className="text-center py-16">
-            <ShoppingBag size={64} className="mx-auto text-muted-foreground mb-4 opacity-20" />
+            <ShoppingBag
+              size={64}
+              className="mx-auto text-muted-foreground mb-4 opacity-20"
+            />
             <h2 className="text-2xl font-bold mb-2">Your cart is empty</h2>
-            <p className="text-muted-foreground mb-6">Looks like you haven't added anything yet</p>
+            <p className="text-muted-foreground mb-6">
+              Looks like you haven't added anything yet
+            </p>
             <Link
               href="/"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-primary to-accent text-white hover:shadow-lg hover:scale-105 transition-all duration-200 font-semibold"
@@ -124,104 +169,120 @@ export default function CartPage() {
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Cart Items */}
-            <div className="lg:col-span-2 space-y-4">
-              {cartItems.map((item) => (
-                <div
-                  key={item.productId}
-                  className="bg-card rounded-xl p-4 sm:p-6 flex gap-4 items-start border border-border/50 hover:border-primary/30 hover:shadow-lg transition-all duration-200"
-                >
-                  {/* Product Image */}
-                  <img
-                    src={item.product.image_url || "/classicwatch.jpg"}
-                    alt={item.product.name}
-                    className="w-24 h-24 rounded-lg object-cover bg-secondary flex-shrink-0 hover:scale-110 transition-transform duration-300"
-                  />
+          <>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Items */}
+              <div className="lg:col-span-2 space-y-4">
+                {cartItems.map((item) => (
+                  <div
+                    key={item.productId}
+                    className="bg-card rounded-xl p-4 sm:p-6 flex gap-4 items-start border border-border/50 hover:border-primary/30 hover:shadow-lg transition-all duration-200"
+                  >
+                    <img
+                      src={item.product.image_url}
+                      alt={item.product.name}
+                      className="w-24 h-24 rounded-lg object-cover bg-secondary flex-shrink-0 hover:scale-110 transition-transform duration-300"
+                    />
 
-                  {/* Product Info */}
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-bold text-lg mb-2 truncate">{item.product.name}</h3>
-                    <p className="text-primary font-bold mb-3">₹{item.product.price.toLocaleString("en-IN")}</p>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-lg mb-2 truncate">{item.product.name}</h3>
+                      <p className="text-primary font-bold mb-3">
+                        ₹{item.product.price.toLocaleString("en-IN")}
+                      </p>
 
-                    {/* Quantity Controls */}
-                    <div className="flex items-center gap-2 bg-secondary rounded-lg p-1 w-fit">
+                      <div className="flex items-center gap-2 bg-secondary rounded-lg p-1 w-fit">
+                        <button
+                          onClick={() =>
+                            handleUpdateQuantity(item.productId, item.quantity - 1)
+                          }
+                          className="p-1 hover:bg-muted rounded transition-colors hover:scale-110"
+                        >
+                          <Minus size={18} />
+                        </button>
+
+                        <span className="w-8 text-center font-bold">
+                          {item.quantity}
+                        </span>
+
+                        <button
+                          onClick={() =>
+                            handleUpdateQuantity(item.productId, item.quantity + 1)
+                          }
+                          className="p-1 hover:bg-muted rounded transition-colors hover:scale-110"
+                        >
+                          <Plus size={18} />
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="text-right flex-shrink-0">
+                      <p className="text-sm text-muted-foreground mb-3">Total</p>
+                      <p className="text-xl font-bold mb-3">
+                        ₹
+                        {(item.product.price * item.quantity).toLocaleString(
+                          "en-IN"
+                        )}
+                      </p>
+
                       <button
-                        onClick={() => handleUpdateQuantity(item.productId, item.quantity - 1)}
-                        className="p-1 hover:bg-muted rounded transition-colors hover:scale-110"
+                        onClick={() => handleRemoveItem(item.productId)}
+                        className="p-2 text-destructive hover:bg-destructive/10 rounded-lg transition-all duration-200 hover:scale-110 active:scale-95"
                       >
-                        <Minus size={18} />
-                      </button>
-                      <span className="w-8 text-center font-bold">{item.quantity}</span>
-                      <button
-                        onClick={() => handleUpdateQuantity(item.productId, item.quantity + 1)}
-                        className="p-1 hover:bg-muted rounded transition-colors hover:scale-110"
-                      >
-                        <Plus size={18} />
+                        <Trash2 size={20} />
                       </button>
                     </div>
                   </div>
+                ))}
+              </div>
 
-                  {/* Total Price & Remove */}
-                  <div className="text-right flex-shrink-0">
-                    <p className="text-sm text-muted-foreground mb-3">Total</p>
-                    <p className="text-xl font-bold mb-3">
-                      ₹{(item.product.price * item.quantity).toLocaleString("en-IN")}
-                    </p>
-                    <button
-                      onClick={() => handleRemoveItem(item.productId)}
-                      className="p-2 text-destructive hover:bg-destructive/10 rounded-lg transition-all duration-200 hover:scale-110 active:scale-95"
+              {/* Summary */}
+              <div className="lg:col-span-1">
+                <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-xl p-6 border border-border/50 sticky top-24">
+                  <h2 className="font-bold text-lg mb-6">Order Summary</h2>
+
+                  <div className="space-y-3 mb-6 pb-6 border-b border-border">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">Subtotal</span>
+                      <span className="font-semibold">
+                        ₹{subtotal.toLocaleString("en-IN")}
+                      </span>
+                    </div>
+
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">Tax (18%)</span>
+                      <span className="font-semibold">
+                        ₹{tax.toLocaleString("en-IN")}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-between items-center mb-6">
+                    <span className="text-lg font-bold">Total</span>
+                    <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                      ₹{total.toLocaleString("en-IN")}
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col gap-3 mt-6">
+                    <Link
+                      href="/checkout"
+                      className="w-full bg-gradient-to-r from-primary to-accent text-white py-3 rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-200 active:scale-95 flex items-center justify-center gap-2"
                     >
-                      <Trash2 size={20} />
-                    </button>
+                      Proceed to Checkout
+                      <ArrowRight size={18} />
+                    </Link>
+
+                    <Link
+                      href="/"
+                      className="w-full text-center py-3 rounded-xl border-2 border-primary text-primary hover:bg-primary/5 transition-all duration-200 font-semibold"
+                    >
+                      Continue Shopping
+                    </Link>
                   </div>
                 </div>
-              ))}
-            </div>
-
-            {/* Summary Card */}
-            <div className="lg:col-span-1">
-              <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-xl p-6 border border-border/50 sticky top-24">
-                <h2 className="font-bold text-lg mb-6">Order Summary</h2>
-
-                <div className="space-y-3 mb-6 pb-6 border-b border-border">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Subtotal</span>
-                    <span className="font-semibold">₹{subtotal.toLocaleString("en-IN")}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Tax (GST 18%)</span>
-                    <span className="font-semibold">₹{tax.toLocaleString("en-IN")}</span>
-                  </div>
-                </div>
-
-                <div className="flex justify-between items-center mb-6">
-                  <span className="text-lg font-bold">Total</span>
-                  <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                    ₹{total.toLocaleString("en-IN")}
-                  </span>
-                </div>
-
-                <div className="flex flex-col gap-3 mt-6">
-  <Link
-    href="/checkout"
-    className="w-full bg-gradient-to-r from-primary to-accent text-white py-3 rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-200 active:scale-95 flex items-center justify-center gap-2"
-  >
-    Proceed to Checkout
-    <ArrowRight size={18} />
-  </Link>
-
-  <Link
-    href="/"
-    className="w-full text-center py-3 rounded-xl border-2 border-primary text-primary hover:bg-primary/5 transition-all duration-200 font-semibold"
-  >
-    Continue Shopping
-  </Link>
-</div>
-
               </div>
             </div>
-          </div>
+          </>
         )}
       </div>
 
@@ -231,5 +292,5 @@ export default function CartPage() {
         </div>
       )}
     </main>
-  )
+  );
 }

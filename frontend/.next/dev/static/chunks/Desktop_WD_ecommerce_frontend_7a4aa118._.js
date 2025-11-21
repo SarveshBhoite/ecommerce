@@ -9,7 +9,7 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$WD$2f$ecommerce$2f$frontend$2f$node_modules$2f$zustand$2f$esm$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/WD/ecommerce/frontend/node_modules/zustand/esm/react.mjs [app-client] (ecmascript)");
 ;
 const useAuth = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$WD$2f$ecommerce$2f$frontend$2f$node_modules$2f$zustand$2f$esm$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["create"])((set, get)=>({
-        token: ("TURBOPACK compile-time truthy", 1) ? localStorage.getItem("token") : "TURBOPACK unreachable",
+        token: null,
         user: null,
         setAuth: (token, user)=>{
             set({
@@ -31,7 +31,14 @@ const useAuth = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$W
                 localStorage.removeItem("user");
             }
         },
-        isAuthenticated: ()=>get().token !== null
+        isAuthenticated: ()=>{
+            if ("TURBOPACK compile-time truthy", 1) {
+                const token = localStorage.getItem("token");
+                return !!token;
+            }
+            //TURBOPACK unreachable
+            ;
+        }
     }));
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
@@ -40,49 +47,87 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 "[project]/Desktop/WD/ecommerce/frontend/lib/db.ts [app-client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
-// This is a client-side utility for storing cart data
+// frontend/lib/db.ts
 __turbopack_context__.s([
     "addToCart",
     ()=>addToCart,
     "getCart",
     ()=>getCart,
+    "getToken",
+    ()=>getToken,
     "removeFromCart",
     ()=>removeFromCart,
-    "setCart",
-    ()=>setCart,
     "updateCartQuantity",
     ()=>updateCartQuantity
 ]);
-const getCart = ()=>{
+function getToken() {
     if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
     ;
-    const cart = localStorage.getItem("cart");
-    return cart ? JSON.parse(cart) : {};
-};
-const setCart = (cart)=>{
-    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
-    ;
-    localStorage.setItem("cart", JSON.stringify(cart));
-};
-const addToCart = (productId, quantity = 1)=>{
-    const cart = getCart();
-    cart[productId] = (cart[productId] || 0) + quantity;
-    setCart(cart);
-};
-const removeFromCart = (productId)=>{
-    const cart = getCart();
-    delete cart[productId];
-    setCart(cart);
-};
-const updateCartQuantity = (productId, quantity)=>{
-    const cart = getCart();
-    if (quantity <= 0) {
-        delete cart[productId];
-    } else {
-        cart[productId] = quantity;
-    }
-    setCart(cart);
-};
+    return localStorage.getItem("token");
+}
+async function getCart() {
+    const token = getToken();
+    if (!token) return {};
+    const res = await fetch("/api/cart", {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+    if (!res.ok) return {};
+    const data = await res.json();
+    // Convert API response → { productId: quantity }
+    const map = {};
+    data.items.forEach((item)=>{
+        map[item.productId] = item.quantity;
+    });
+    return map;
+}
+async function addToCart(productId) {
+    const token = getToken();
+    if (!token) return false;
+    const res = await fetch("/api/cart", {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            productId
+        })
+    });
+    return res.ok;
+}
+async function updateCartQuantity(productId, quantity) {
+    const token = getToken();
+    if (!token) return false;
+    const res = await fetch("/api/cart", {
+        method: "PUT",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            productId,
+            quantity
+        })
+    });
+    return res.ok;
+}
+async function removeFromCart(productId) {
+    const token = getToken();
+    if (!token) return false;
+    const res = await fetch("/api/cart", {
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            productId
+        })
+    });
+    return res.ok;
+}
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }

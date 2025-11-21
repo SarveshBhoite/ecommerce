@@ -1,17 +1,7 @@
-[00:00:00.979] Server  LOG     
-[00:00:00.980] Server  LOG        We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
-[00:00:00.980] Server  LOG        The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
-
-[00:00:00.980] Server  LOG        	- include was updated to add '.next/dev/types/**/*.ts'
-[00:00:00.980] Server  LOG     
-[00:00:00.980] Server  LOG        The following mandatory changes were made to your tsconfig.json:
-
-[00:00:00.981] Server  LOG        	- jsx was set to react-jsx (next.js uses the React automatic runtime)
-[00:00:00.981] Server  LOG     
-[00:00:01.201] Server  LOG      ✓ Ready in 738ms
-[00:00:25.630] Server  LOG      ○ Compiling / ...
-[00:00:26.622] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:26.780] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+[00:00:01.019] Server  LOG      ✓ Ready in 666ms
+[00:00:03.681] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:04.557] Server  LOG     ⏳ Connecting to MongoDB...
+[00:00:04.614] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -51,305 +41,42 @@ https://react.dev/link/hydration-mismatch
           ...
         ...
 
-[02:27:51.222] Server  LOG      ✓ Compiled in 67ms
-[02:27:54.855] Server  LOG      ✓ Compiled in 56ms
-[02:30:21.220] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:30:21.377] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-
-  ...
-    <RedirectBoundary>
-      <RedirectErrorBoundary router={{...}}>
-        <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
-          <SegmentViewNode type="page" pagePath="/Desktop/W...">
-            <SegmentTrieNode>
-            <ClientPageRoot Component={function HomePage} serverProvidedParams={{...}}>
-              <HomePage params={Promise} searchParams={Promise}>
-                <main className="min-h-scre...">
-                  <Navbar>
-                    <nav className="sticky top...">
-                      <div className="max-w-7xl ...">
-                        <LinkComponent>
-                        <div className="flex items...">
-                          <LinkComponent href="/" className="flex items...">
-+                           <a
-+                             className="flex items-center gap-2 text-foreground hover:text-primary transition-all dur..."
-+                             ref={function}
-+                             onClick={function onClick}
-+                             onMouseEnter={function onMouseEnter}
-+                             onTouchStart={function onTouchStart}
-+                             href="/"
-+                           >
-                          ...
-                  ...
-          ...
-        ...
-
-[02:30:46.718] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.722] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.726] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.729] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:30:46.733] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.734] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.735] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.737] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:30:46.739] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.739] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.741] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.743] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:30:46.745] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.746] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.747] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.748] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:30:46.750] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.751] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.752] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.753] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:30:46.755] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.756] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.757] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.760] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:30:46.761] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.762] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.763] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.765] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:30:46.766] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.767] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.768] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.769] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:30:46.825] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.827] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.828] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.830] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:30:46.833] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.834] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.836] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.838] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:30:46.841] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.843] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.845] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.847] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:30:46.849] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.850] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.851] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.853] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:30:46.855] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.855] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.856] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.858] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:30:46.860] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.861] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.877] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.880] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:30:46.882] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.882] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.884] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.885] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:30:46.887] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.887] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.889] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:30:46.890] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:30:46.900] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'charAt')
-[02:30:54.305] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:30:54.437] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-
-  ...
-    <RedirectBoundary>
-      <RedirectErrorBoundary router={{...}}>
-        <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
-          <SegmentViewNode type="page" pagePath="/Desktop/W...">
-            <SegmentTrieNode>
-            <ClientPageRoot Component={function HomePage} serverProvidedParams={{...}}>
-              <HomePage params={Promise} searchParams={Promise}>
-                <main className="min-h-scre...">
-                  <Navbar>
-                    <nav className="sticky top...">
-                      <div className="max-w-7xl ...">
-                        <LinkComponent>
-                        <div className="flex items...">
-                          <LinkComponent href="/" className="flex items...">
-+                           <a
-+                             className="flex items-center gap-2 text-foreground hover:text-primary transition-all dur..."
-+                             ref={function}
-+                             onClick={function onClick}
-+                             onMouseEnter={function onMouseEnter}
-+                             onTouchStart={function onTouchStart}
-+                             href="/"
-+                           >
-                          ...
-                  ...
-          ...
-        ...
-
-[02:31:06.702] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.703] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.705] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.707] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:31:06.711] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.712] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.713] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.714] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:31:06.716] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.717] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.718] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.720] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:31:06.721] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.722] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.723] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.726] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:31:06.728] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.729] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.730] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.732] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:31:06.736] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.737] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.738] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.742] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:31:06.743] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.744] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.745] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.747] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:31:06.749] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.750] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.751] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.753] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:31:06.779] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.781] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.783] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.785] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:31:06.788] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.789] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.791] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.794] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:31:06.797] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.798] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.799] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.801] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:31:06.805] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.806] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.807] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.809] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:31:06.810] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.812] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.813] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.815] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:31:06.817] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.818] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.820] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.822] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:31:06.824] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.825] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.826] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.828] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:31:06.831] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.835] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__6c8da11d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.837] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[02:31:06.841] Server  WARN    Error: Route "/api/products/[id]" used `params.id`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
-[02:31:06.863] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'charAt')
-[02:38:50.738] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:38:50.906] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-
-  ...
-    <RedirectBoundary>
-      <RedirectErrorBoundary router={{...}}>
-        <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
-          <SegmentViewNode type="page" pagePath="/Desktop/W...">
-            <SegmentTrieNode>
-            <ClientPageRoot Component={function HomePage} serverProvidedParams={{...}}>
-              <HomePage params={Promise} searchParams={Promise}>
-                <main className="min-h-scre...">
-                  <Navbar>
-                    <nav className="sticky top...">
-                      <div className="max-w-7xl ...">
-                        <LinkComponent>
-                        <div className="flex items...">
-                          <LinkComponent href="/" className="flex items...">
-+                           <a
-+                             className="flex items-center gap-2 text-foreground hover:text-primary transition-all dur..."
-+                             ref={function}
-+                             onClick={function onClick}
-+                             onMouseEnter={function onMouseEnter}
-+                             onTouchStart={function onTouchStart}
-+                             href="/"
-+                           >
-                          ...
-                  ...
-          ...
-        ...
-
-[02:42:10.667] Server  LOG      ✓ Compiled in 89ms
-[02:42:21.215] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:42:21.372] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-
-  ...
-    <RedirectBoundary>
-      <RedirectErrorBoundary router={{...}}>
-        <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
-          <SegmentViewNode type="page" pagePath="/Desktop/W...">
-            <SegmentTrieNode>
-            <ClientPageRoot Component={function HomePage} serverProvidedParams={{...}}>
-              <HomePage params={Promise} searchParams={Promise}>
-                <main className="min-h-scre...">
-                  <Navbar>
-                    <nav className="sticky top...">
-                      <div className="max-w-7xl ...">
-                        <LinkComponent>
-                        <div className="flex items...">
-                          <LinkComponent href="/" className="flex items...">
-+                           <a
-+                             className="flex items-center gap-2 text-foreground hover:text-primary transition-all dur..."
-+                             ref={function}
-+                             onClick={function onClick}
-+                             onMouseEnter={function onMouseEnter}
-+                             onTouchStart={function onTouchStart}
-+                             href="/"
-+                           >
-                          ...
-                  ...
-          ...
-        ...
-
-[02:44:11.431] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:44:11.557] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+[00:00:04.745] Server  LOG     ✅ MongoDB Connected Successfully
+[00:00:04.746] Server  LOG     📌 HOST: "ac-z8o7qy1-shard-00-00.7snafjd.mongodb.net"
+[00:00:41.023] Server  LOG     🔄 Using existing MongoDB connection
+[00:00:41.049] Server  LOG     🔄 Using existing MongoDB connection
+[00:00:41.075] Server  LOG     🔄 Using existing MongoDB connection
+[00:00:41.100] Server  LOG     🔄 Using existing MongoDB connection
+[00:00:44.461] Server  LOG     🔄 Using existing MongoDB connection
+[00:00:44.474] Server  LOG     🔄 Using existing MongoDB connection
+[00:00:44.491] Server  LOG     🔄 Using existing MongoDB connection
+[00:00:44.509] Server  LOG     🔄 Using existing MongoDB connection
+[00:02:54.873] Server  LOG     🔄 Using existing MongoDB connection
+[00:02:58.489] Server  LOG     🔄 Using existing MongoDB connection
+[00:02:58.535] Server  LOG     🔄 Using existing MongoDB connection
+[00:02:58.570] Server  LOG     🔄 Using existing MongoDB connection
+[00:02:58.611] Server  LOG     🔄 Using existing MongoDB connection
+[00:03:00.197] Server  LOG     🔄 Using existing MongoDB connection
+[00:03:00.239] Server  LOG     🔄 Using existing MongoDB connection
+[00:03:33.039] Server  LOG     🔄 Using existing MongoDB connection
+[00:03:33.074] Server  LOG     🔄 Using existing MongoDB connection
+[00:03:33.115] Server  LOG     🔄 Using existing MongoDB connection
+[00:03:33.167] Server  LOG     🔄 Using existing MongoDB connection
+[00:03:58.597] Server  LOG     🔄 Using existing MongoDB connection
+[00:03:58.605] Server  LOG     🔄 Using existing MongoDB connection
+[00:03:58.625] Server  LOG     🔄 Using existing MongoDB connection
+[00:03:58.640] Server  LOG     🔄 Using existing MongoDB connection
+[00:06:31.538] Server  LOG      ✓ Compiled in 74ms
+[00:06:38.148] Server  LOG     🔄 Using existing MongoDB connection
+[00:06:38.187] Server  LOG     🔄 Using existing MongoDB connection
+[00:06:38.227] Server  LOG     🔄 Using existing MongoDB connection
+[00:06:38.255] Server  LOG     🔄 Using existing MongoDB connection
+[00:06:38.288] Server  LOG     🔄 Using existing MongoDB connection
+[00:06:38.331] Server  LOG     🔄 Using existing MongoDB connection
+[00:06:41.239] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:41.322] Server  LOG     🔄 Using existing MongoDB connection
+[00:06:41.361] Server  LOG     🔄 Using existing MongoDB connection
+[00:06:41.394] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -389,51 +116,32 @@ https://react.dev/link/hydration-mismatch
           ...
         ...
 
-[02:44:27.566] Server  LOG      ✓ Compiled in 117ms
-[02:44:33.691] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:44:33.818] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-
-  ...
-    <RedirectBoundary>
-      <RedirectErrorBoundary router={{...}}>
-        <InnerLayoutRouter url="/cart" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
-          <SegmentViewNode type="page" pagePath="/Desktop/W...">
-            <SegmentTrieNode>
-            <ClientPageRoot Component={function CartPage} serverProvidedParams={{...}}>
-              <CartPage params={Promise} searchParams={Promise}>
-                <main>
-                  <Navbar>
-                    <nav className="sticky top...">
-                      <div className="max-w-7xl ...">
-                        <LinkComponent>
-                        <div className="flex items...">
-                          <LinkComponent href="/" className="flex items...">
-+                           <a
-+                             className="flex items-center gap-2 text-foreground hover:text-primary transition-all dur..."
-+                             ref={function}
-+                             onClick={function onClick}
-+                             onMouseEnter={function onMouseEnter}
-+                             onTouchStart={function onTouchStart}
-+                             href="/"
-+                           >
-                          ...
-                  ...
-          ...
-        ...
-
-[02:44:45.614] Server  LOG      ✓ Compiled in 77ms
-[02:52:51.632] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:52:51.791] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+[00:06:41.416] Server  LOG     🔄 Using existing MongoDB connection
+[00:06:45.296] Server  LOG     🔄 Using existing MongoDB connection
+[00:06:45.325] Server  LOG     🔄 Using existing MongoDB connection
+[00:06:45.356] Server  LOG     🔄 Using existing MongoDB connection
+[00:06:45.385] Server  LOG     🔄 Using existing MongoDB connection
+[00:07:22.246] Server  LOG     🔄 Using existing MongoDB connection
+[00:07:22.256] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\[root-of-the-server]__d0c7fb43._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:07:22.282] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\compiled\next-server\app-route-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:07:22.302] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\.next\dev\server\chunks\1f110_aea1c2b9._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:07:22.309] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:07:22.314] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:07:22.324] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:07:22.327] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:07:22.333] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:07:22.337] Server  ERROR   C:\Users\Raj Bhoite\Desktop\WD\ecommerce\frontend\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:07:22.345] Server  ERROR   DELETE /api/cart error: SyntaxError: Unexpected end of JSON input
+[00:07:24.093] Server  LOG     🔄 Using existing MongoDB connection
+[00:07:24.103] Server  LOG     🔄 Using existing MongoDB connection
+[00:07:24.132] Server  LOG     🔄 Using existing MongoDB connection
+[00:07:24.146] Server  LOG     🔄 Using existing MongoDB connection
+[00:09:06.396] Server  LOG     🔄 Using existing MongoDB connection
+[00:09:06.427] Server  LOG      ✓ Compiled in 90ms
+[00:09:12.519] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:12.583] Server  LOG     🔄 Using existing MongoDB connection
+[00:09:12.599] Server  LOG     🔄 Using existing MongoDB connection
+[00:09:12.679] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -473,8 +181,11 @@ https://react.dev/link/hydration-mismatch
           ...
         ...
 
-[03:06:56.718] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:06:56.889] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+[00:09:19.219] Server  LOG     🔄 Using existing MongoDB connection
+[00:09:22.775] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:22.831] Server  LOG     🔄 Using existing MongoDB connection
+[00:09:22.848] Server  LOG     🔄 Using existing MongoDB connection
+[00:09:22.939] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -495,48 +206,6 @@ https://react.dev/link/hydration-mismatch
             <ClientPageRoot Component={function HomePage} serverProvidedParams={{...}}>
               <HomePage params={Promise} searchParams={Promise}>
                 <main className="min-h-scre...">
-                  <Navbar>
-                    <nav className="sticky top...">
-                      <div className="max-w-7xl ...">
-                        <LinkComponent>
-                        <div className="flex items...">
-                          <LinkComponent href="/" className="flex items...">
-+                           <a
-+                             className="flex items-center gap-2 text-foreground hover:text-primary transition-all dur..."
-+                             ref={function}
-+                             onClick={function onClick}
-+                             onMouseEnter={function onMouseEnter}
-+                             onTouchStart={function onTouchStart}
-+                             href="/"
-+                           >
-                          ...
-                  ...
-          ...
-        ...
-
-[03:09:29.861] Server  LOG      ✓ Compiled in 60ms
-[03:09:35.960] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[03:09:36.092] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-
-  ...
-    <RedirectBoundary>
-      <RedirectErrorBoundary router={{...}}>
-        <InnerLayoutRouter url="/cart" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
-          <SegmentViewNode type="page" pagePath="/Desktop/W...">
-            <SegmentTrieNode>
-            <ClientPageRoot Component={function CartPage} serverProvidedParams={{...}}>
-              <CartPage params={Promise} searchParams={Promise}>
-                <main>
                   <Navbar>
                     <nav className="sticky top...">
                       <div className="max-w-7xl ...">

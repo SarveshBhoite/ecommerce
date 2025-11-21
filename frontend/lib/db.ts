@@ -1,33 +1,89 @@
-// This is a client-side utility for storing cart data
-export const getCart = (): { [key: string]: number } => {
-  if (typeof window === "undefined") return {}
-  const cart = localStorage.getItem("cart")
-  return cart ? JSON.parse(cart) : {}
+// frontend/lib/db.ts
+
+type ProductBrief = {
+  id: string;
+  name: string;
+  price: number;
+  image_url: string;
+};
+
+/* Return token from localStorage */
+export function getToken(): string | null {
+  if (typeof window === "undefined") return null;
+  return localStorage.getItem("token");
 }
 
-export const setCart = (cart: { [key: string]: number }) => {
-  if (typeof window === "undefined") return
-  localStorage.setItem("cart", JSON.stringify(cart))
+/* GET CART → returns { productId: quantity } */
+export async function getCart(): Promise<Record<string, number>> {
+  const token = getToken();
+  if (!token) return {};
+
+  const res = await fetch("/api/cart", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!res.ok) return {};
+
+  const data = await res.json();
+
+  // Convert API response → { productId: quantity }
+  const map: Record<string, number> = {};
+  data.items.forEach((item: any) => {
+    map[item.productId] = item.quantity;
+  });
+
+  return map;
 }
 
-export const addToCart = (productId: string, quantity = 1) => {
-  const cart = getCart()
-  cart[productId] = (cart[productId] || 0) + quantity
-  setCart(cart)
+/* ADD TO CART */
+export async function addToCart(productId: string): Promise<boolean> {
+  const token = getToken();
+  if (!token) return false;
+
+  const res = await fetch("/api/cart", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ productId }),
+  });
+
+  return res.ok;
 }
 
-export const removeFromCart = (productId: string) => {
-  const cart = getCart()
-  delete cart[productId]
-  setCart(cart)
+/* UPDATE CART QUANTITY */
+export async function updateCartQuantity(productId: string, quantity: number): Promise<boolean> {
+  const token = getToken();
+  if (!token) return false;
+
+  const res = await fetch("/api/cart", {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ productId, quantity }),
+  });
+
+  return res.ok;
 }
 
-export const updateCartQuantity = (productId: string, quantity: number) => {
-  const cart = getCart()
-  if (quantity <= 0) {
-    delete cart[productId]
-  } else {
-    cart[productId] = quantity
-  }
-  setCart(cart)
+/* REMOVE ITEM FROM CART */
+export async function removeFromCart(productId: string): Promise<boolean> {
+  const token = getToken();
+  if (!token) return false;
+
+  const res = await fetch("/api/cart", {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ productId }),
+  });
+
+  return res.ok;
 }

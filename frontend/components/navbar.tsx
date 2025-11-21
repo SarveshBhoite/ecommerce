@@ -1,34 +1,57 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { useAuth } from "@/lib/store"
-import { ShoppingCart, LogOut, Home } from "lucide-react"
-import { useState, useEffect } from "react"
-import { getCart } from "@/lib/db"
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/lib/store";
+import { ShoppingCart, LogOut, Home } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export function Navbar() {
-  const { user, logout, isAuthenticated } = useAuth()
-  const router = useRouter()
-  const [cartCount, setCartCount] = useState(0)
+  const { logout, isAuthenticated } = useAuth();
+  const router = useRouter();
+  const [cartCount, setCartCount] = useState(0);
+
+  // 🔥 Fetch cart count from MongoDB
+  const fetchCartCount = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) return;
+
+      const response = await fetch("/api/cart", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        const totalItems = data.items.reduce(
+          (sum: number, item: any) => sum + item.quantity,
+          0
+        );
+        setCartCount(totalItems);
+      }
+    } catch (error) {
+      console.error("Failed to load cart count:", error);
+    }
+  };
 
   useEffect(() => {
-    const cart = getCart()
-    setCartCount(Object.values(cart).reduce((a, b) => a + b, 0))
-
-    const handleStorageChange = () => {
-      const updatedCart = getCart()
-      setCartCount(Object.values(updatedCart).reduce((a, b) => a + b, 0))
+    if (isAuthenticated()) {
+      fetchCartCount();
     }
 
-    window.addEventListener("storage", handleStorageChange)
-    return () => window.removeEventListener("storage", handleStorageChange)
-  }, [])
+    // Listen for global cart updates
+    const handler = () => fetchCartCount();
+    window.addEventListener("cart-updated", handler);
+
+    return () => window.removeEventListener("cart-updated", handler);
+  }, [isAuthenticated]);
 
   const handleLogout = () => {
-    logout()
-    router.push("/login")
-  }
+    logout();
+    router.push("/login");
+  };
 
   return (
     <nav className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border shadow-sm">
@@ -52,17 +75,22 @@ export function Navbar() {
                 <Home size={20} />
                 <span className="hidden sm:inline">Browse</span>
               </Link>
+
               <Link
                 href="/cart"
                 className="relative text-foreground hover:text-primary transition-all duration-200 hover:scale-110 group"
               >
-                <ShoppingCart size={24} className="group-hover:rotate-12 transition-transform" />
+                <ShoppingCart
+                  size={24}
+                  className="group-hover:rotate-12 transition-transform"
+                />
                 {cartCount > 0 && (
                   <span className="absolute -top-3 -right-3 bg-gradient-to-r from-primary to-accent text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center animate-pulse">
                     {cartCount}
                   </span>
                 )}
               </Link>
+
               <button
                 onClick={handleLogout}
                 className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-destructive to-red-500 text-destructive-foreground hover:shadow-lg hover:scale-105 transition-all duration-200 font-medium"
@@ -75,5 +103,5 @@ export function Navbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }

@@ -1,19 +1,12 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
-import { Navbar } from "@/components/navbar"
-import { useAuth } from "@/lib/store"
-import { getCart } from "@/lib/db"
-import Link from "next/link"
-
-interface Product {
-  id: string
-  name: string
-  price: number
-}
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Navbar } from "@/components/navbar";
+import { useAuth } from "@/lib/store";
+import Link from "next/link";
 
 export default function CheckoutPage() {
   const [formData, setFormData] = useState({
@@ -22,73 +15,96 @@ export default function CheckoutPage() {
     address: "",
     phoneNumber: "",
     paymentMethod: "credit-card",
-  })
-  const [cartItems, setCartItems] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
-  const [submitting, setSubmitting] = useState(false)
-  const [toastMessage, setToastMessage] = useState("")
-  const [showToast, setShowToast] = useState(false)
-  const [orderPlaced, setOrderPlaced] = useState(false)
-  const { user, isAuthenticated } = useAuth()
-  const router = useRouter()
+  });
 
+  const [cartItems, setCartItems] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [showToast, setShowToast] = useState(false);
+  const [orderPlaced, setOrderPlaced] = useState(false);
+
+  const { user, isAuthenticated } = useAuth();
+  const router = useRouter();
+
+  // SHOW TOAST
+  const showToastMessage = (msg: string) => {
+    setToastMessage(msg);
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 3000);
+  };
+
+  // 🔥 Load Cart From MongoDB Instead of Local Storage
   useEffect(() => {
     if (!isAuthenticated) {
-      router.push("/login")
-      return
+      router.push("/login");
+      return;
     }
 
     const loadCart = async () => {
       try {
-        const cart = getCart()
-        const items: any[] = []
-        let total = 0
+        const token = localStorage.getItem("token");
 
-        for (const [productId, quantity] of Object.entries(cart)) {
-          const response = await fetch(`/api/products/${productId}`)
-          const product = await response.json()
-          items.push({ ...product, cartQuantity: quantity })
-          total += product.price * (quantity as number)
+        const response = await fetch("/api/cart", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          console.error("Cart Load Error:", data);
+          return;
         }
 
-        setCartItems(items)
+        // Map DB cart items into UI format
+        const items = data.items.map((entry: any) => ({
+          id: entry.product.id,
+          name: entry.product.name,
+          price: entry.product.price,
+          cartQuantity: entry.quantity,
+        }));
+
+        setCartItems(items);
+
         if (user?.email) {
-          setFormData((prev) => ({ ...prev, email: user.email }))
+          setFormData((prev) => ({ ...prev, email: user.email }));
         }
-      } catch (error) {
-        console.error("Failed to load cart:", error)
+      } catch (err) {
+        console.error("Failed to load cart:", err);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
-    loadCart()
-  }, [isAuthenticated, router, user])
+    loadCart();
+  }, [isAuthenticated, router, user]);
 
-  const showToastMessage = (message: string) => {
-    setToastMessage(message)
-    setShowToast(true)
-    setTimeout(() => setShowToast(false), 3000)
-  }
-
+  // INPUT HANDLER
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-  const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.cartQuantity, 0)
+  // TOTAL PRICE
+  const totalPrice = cartItems.reduce(
+    (sum, item) => sum + item.price * item.cartQuantity,
+    0
+  );
 
+  // PLACE ORDER
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setSubmitting(true)
+    e.preventDefault();
+    setSubmitting(true);
 
     try {
+      const token = localStorage.getItem("token");
+
       const response = await fetch("/api/orders", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({
           ...formData,
           totalPrice,
@@ -98,26 +114,33 @@ export default function CheckoutPage() {
             price: item.price,
           })),
         }),
-      })
+      });
 
       if (!response.ok) {
-        throw new Error("Failed to place order")
+        throw new Error("Order Failed");
       }
 
-      // Clear cart
-      if (typeof window !== "undefined") {
-        localStorage.removeItem("cart")
-      }
+      // ✅ CLEAR CART IN MONGODB
+      await fetch("/api/cart", {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-      setOrderPlaced(true)
-      showToastMessage("Order placed successfully!")
+      setOrderPlaced(true);
+      showToastMessage("Order placed successfully!");
     } catch (error) {
-      console.error("Error placing order:", error)
-      showToastMessage("Failed to place order. Please try again.")
+      console.error("Order Error:", error);
+      showToastMessage("Failed to place order. Try again.");
     } finally {
-      setSubmitting(false)
+      setSubmitting(false);
     }
-  }
+  };
+
+  // ==========================
+  //      UI STARTS BELOW
+  // ==========================
 
   if (loading) {
     return (
@@ -127,7 +150,7 @@ export default function CheckoutPage() {
           <p className="text-muted-foreground">Loading checkout...</p>
         </div>
       </main>
-    )
+    );
   }
 
   if (!isAuthenticated) {
@@ -138,7 +161,7 @@ export default function CheckoutPage() {
           <p className="text-muted-foreground">Please log in to checkout</p>
         </div>
       </main>
-    )
+    );
   }
 
   if (cartItems.length === 0) {
@@ -155,7 +178,7 @@ export default function CheckoutPage() {
           </Link>
         </div>
       </main>
-    )
+    );
   }
 
   if (orderPlaced) {
@@ -167,25 +190,21 @@ export default function CheckoutPage() {
             <div className="mb-6 text-6xl">✓</div>
             <h1 className="text-4xl font-bold mb-4">Order Placed Successfully!</h1>
             <p className="text-muted-foreground mb-8">
-              Thank you for your purchase. Your order has been confirmed and will be processed shortly.
+              Thank you for your purchase. Your order is now being processed.
             </p>
-            <div className="space-y-4">
-              <p className="text-sm text-muted-foreground">
-                Order confirmation has been sent to <span className="font-medium">{formData.email}</span>
-              </p>
-              <Link
-                href="/"
-                className="inline-block px-6 py-3 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity font-medium"
-              >
-                Continue Shopping
-              </Link>
-            </div>
+            <Link
+              href="/"
+              className="inline-block px-6 py-3 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity font-medium"
+            >
+              Continue Shopping
+            </Link>
           </div>
         </div>
       </main>
-    )
+    );
   }
 
+  // 🔥 MAIN CHECKOUT PAGE
   return (
     <main>
       <Navbar />
@@ -197,6 +216,7 @@ export default function CheckoutPage() {
           {/* Checkout Form */}
           <div className="lg:col-span-2">
             <form onSubmit={handleSubmit} className="bg-card rounded-xl p-6 border border-border space-y-6">
+              {/* Name */}
               <div>
                 <label className="block text-sm font-medium mb-2">Full Name</label>
                 <input
@@ -205,11 +225,12 @@ export default function CheckoutPage() {
                   value={formData.fullName}
                   onChange={handleInputChange}
                   placeholder="John Doe"
-                  className="w-full px-4 py-2 rounded-lg bg-secondary text-foreground placeholder-muted-foreground border border-border focus:outline-none focus:ring-2 focus:ring-accent"
+                  className="w-full px-4 py-2 rounded-lg bg-secondary border border-border"
                   required
                 />
               </div>
 
+              {/* Email */}
               <div>
                 <label className="block text-sm font-medium mb-2">Email</label>
                 <input
@@ -218,11 +239,12 @@ export default function CheckoutPage() {
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder="john@example.com"
-                  className="w-full px-4 py-2 rounded-lg bg-secondary text-foreground placeholder-muted-foreground border border-border focus:outline-none focus:ring-2 focus:ring-accent"
+                  className="w-full px-4 py-2 rounded-lg bg-secondary border border-border"
                   required
                 />
               </div>
 
+              {/* Address */}
               <div>
                 <label className="block text-sm font-medium mb-2">Address</label>
                 <input
@@ -230,12 +252,13 @@ export default function CheckoutPage() {
                   name="address"
                   value={formData.address}
                   onChange={handleInputChange}
-                  placeholder="123 Main St, City, State 12345"
-                  className="w-full px-4 py-2 rounded-lg bg-secondary text-foreground placeholder-muted-foreground border border-border focus:outline-none focus:ring-2 focus:ring-accent"
+                  placeholder="123 Main St"
+                  className="w-full px-4 py-2 rounded-lg bg-secondary border border-border"
                   required
                 />
               </div>
 
+              {/* Phone */}
               <div>
                 <label className="block text-sm font-medium mb-2">Phone Number</label>
                 <input
@@ -243,19 +266,20 @@ export default function CheckoutPage() {
                   name="phoneNumber"
                   value={formData.phoneNumber}
                   onChange={handleInputChange}
-                  placeholder="+1 (555) 123-4567"
-                  className="w-full px-4 py-2 rounded-lg bg-secondary text-foreground placeholder-muted-foreground border border-border focus:outline-none focus:ring-2 focus:ring-accent"
+                  placeholder="+91 9876543210"
+                  className="w-full px-4 py-2 rounded-lg bg-secondary border border-border"
                   required
                 />
               </div>
 
+              {/* Payment */}
               <div>
                 <label className="block text-sm font-medium mb-2">Payment Method</label>
                 <select
                   name="paymentMethod"
                   value={formData.paymentMethod}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 rounded-lg bg-secondary text-foreground border border-border focus:outline-none focus:ring-2 focus:ring-accent"
+                  className="w-full px-4 py-2 rounded-lg bg-secondary border border-border"
                 >
                   <option value="credit-card">Credit Card</option>
                   <option value="debit-card">Debit Card</option>
@@ -284,7 +308,9 @@ export default function CheckoutPage() {
                     <span className="text-muted-foreground">
                       {item.name} x{item.cartQuantity}
                     </span>
-                    <span className="font-medium">₹{(item.price * item.cartQuantity).toFixed(2)}</span>
+                    <span className="font-medium">
+                      ₹{(item.price * item.cartQuantity).toFixed(2)}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -292,7 +318,9 @@ export default function CheckoutPage() {
               <div className="border-t border-border pt-4">
                 <div className="flex justify-between mb-4">
                   <span className="font-semibold">Total:</span>
-                  <span className="text-2xl font-bold text-primary">₹{totalPrice.toFixed(2)}</span>
+                  <span className="text-2xl font-bold text-primary">
+                    ₹{totalPrice.toFixed(2)}
+                  </span>
                 </div>
               </div>
             </div>
@@ -301,10 +329,10 @@ export default function CheckoutPage() {
       </div>
 
       {showToast && (
-        <div className="fixed bottom-4 right-4 bg-primary text-primary-foreground px-6 py-3 rounded-lg shadow-lg animate-in slide-in-from-bottom-4 duration-300">
+        <div className="fixed bottom-4 right-4 bg-primary text-primary-foreground px-6 py-3 rounded-lg shadow-lg">
           {toastMessage}
         </div>
       )}
     </main>
-  )
+  );
 }
