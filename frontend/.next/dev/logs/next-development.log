@@ -473,3 +473,86 @@ https://react.dev/link/hydration-mismatch
           ...
         ...
 
+[03:06:56.718] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:06:56.889] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
+          <SegmentViewNode type="page" pagePath="/Desktop/W...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function HomePage} serverProvidedParams={{...}}>
+              <HomePage params={Promise} searchParams={Promise}>
+                <main className="min-h-scre...">
+                  <Navbar>
+                    <nav className="sticky top...">
+                      <div className="max-w-7xl ...">
+                        <LinkComponent>
+                        <div className="flex items...">
+                          <LinkComponent href="/" className="flex items...">
++                           <a
++                             className="flex items-center gap-2 text-foreground hover:text-primary transition-all dur..."
++                             ref={function}
++                             onClick={function onClick}
++                             onMouseEnter={function onMouseEnter}
++                             onTouchStart={function onTouchStart}
++                             href="/"
++                           >
+                          ...
+                  ...
+          ...
+        ...
+
+[03:09:29.861] Server  LOG      ✓ Compiled in 60ms
+[03:09:35.960] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:09:36.092] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/cart" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
+          <SegmentViewNode type="page" pagePath="/Desktop/W...">
+            <SegmentTrieNode>
+            <ClientPageRoot Component={function CartPage} serverProvidedParams={{...}}>
+              <CartPage params={Promise} searchParams={Promise}>
+                <main>
+                  <Navbar>
+                    <nav className="sticky top...">
+                      <div className="max-w-7xl ...">
+                        <LinkComponent>
+                        <div className="flex items...">
+                          <LinkComponent href="/" className="flex items...">
++                           <a
++                             className="flex items-center gap-2 text-foreground hover:text-primary transition-all dur..."
++                             ref={function}
++                             onClick={function onClick}
++                             onMouseEnter={function onMouseEnter}
++                             onTouchStart={function onTouchStart}
++                             href="/"
++                           >
+                          ...
+                  ...
+          ...
+        ...
+

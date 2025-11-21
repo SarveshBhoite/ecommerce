@@ -202,20 +202,23 @@ export default function CartPage() {
                   </span>
                 </div>
 
-                <Link
-                  href="/checkout"
-                  className="w-full bg-gradient-to-r from-primary to-accent text-white py-3 rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-200 active:scale-95 flex items-center justify-center gap-2"
-                >
-                  Proceed to Checkout
-                  <ArrowRight size={18} />
-                </Link>
+                <div className="flex flex-col gap-3 mt-6">
+  <Link
+    href="/checkout"
+    className="w-full bg-gradient-to-r from-primary to-accent text-white py-3 rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-200 active:scale-95 flex items-center justify-center gap-2"
+  >
+    Proceed to Checkout
+    <ArrowRight size={18} />
+  </Link>
 
-                <Link
-                  href="/"
-                  className="w-full mt-3 text-center py-3 rounded-xl border-2 border-primary text-primary hover:bg-primary/5 transition-all duration-200 font-semibold"
-                >
-                  Continue Shopping
-                </Link>
+  <Link
+    href="/"
+    className="w-full text-center py-3 rounded-xl border-2 border-primary text-primary hover:bg-primary/5 transition-all duration-200 font-semibold"
+  >
+    Continue Shopping
+  </Link>
+</div>
+
               </div>
             </div>
           </div>
