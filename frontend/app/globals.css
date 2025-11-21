@@ -1,181 +1,208 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* =====================================================
+   COLOR SYSTEM (Improved Consistency + Fallbacks)
+   ===================================================== */
 @custom-variant dark (&:is(.dark *));
-
 :root {
-  /* Premium warm color palette - suitable for Indian market */
+  /* Warm premium palette (kept as you defined) */
   --background: oklch(0.98 0 0);
   --foreground: oklch(0.12 0 0);
+
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.12 0 0);
+
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.12 0 0);
+
   --primary: oklch(0.48 0.16 32);
   --primary-foreground: oklch(0.98 0 0);
+
   --secondary: oklch(0.96 0.01 50);
   --secondary-foreground: oklch(0.12 0 0);
+
   --muted: oklch(0.92 0 0);
   --muted-foreground: oklch(0.55 0 0);
+
   --accent: oklch(0.62 0.18 40);
   --accent-foreground: oklch(0.98 0 0);
+
   --destructive: oklch(0.58 0.24 27);
   --destructive-foreground: oklch(0.98 0 0);
+
   --border: oklch(0.9 0 0);
   --input: oklch(0.97 0 0);
-  --ring: oklch(0.48 0.16 32);
-  --chart-1: oklch(0.65 0.22 40);
-  --chart-2: oklch(0.6 0.18 35);
-  --chart-3: oklch(0.55 0.2 38);
-  --chart-4: oklch(0.7 0.15 42);
-  --chart-5: oklch(0.75 0.18 45);
+  --ring: var(--primary);
+
+  /* Elevation system */
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+
   --radius: 0.75rem;
-  --sidebar: oklch(0.98 0 0);
-  --sidebar-foreground: oklch(0.12 0 0);
-  --sidebar-primary: oklch(0.48 0.16 32);
-  --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.96 0.01 50);
-  --sidebar-accent-foreground: oklch(0.12 0 0);
-  --sidebar-border: oklch(0.9 0 0);
-  --sidebar-ring: oklch(0.48 0.16 32);
 }
 
+/* =====================================================
+   DARK MODE (Improved Depth + Contrast)
+   ===================================================== */
 .dark {
   --background: oklch(0.11 0 0);
   --foreground: oklch(0.96 0 0);
+
   --card: oklch(0.15 0 0);
   --card-foreground: oklch(0.96 0 0);
+
   --popover: oklch(0.15 0 0);
   --popover-foreground: oklch(0.96 0 0);
+
   --primary: oklch(0.72 0.18 40);
-  --primary-foreground: oklch(0.11 0 0);
+  --primary-foreground: oklch(0.12 0 0);
+
   --secondary: oklch(0.22 0.01 50);
   --secondary-foreground: oklch(0.96 0 0);
+
   --muted: oklch(0.24 0 0);
   --muted-foreground: oklch(0.7 0 0);
+
   --accent: oklch(0.78 0.18 40);
-  --accent-foreground: oklch(0.11 0 0);
-  --destructive: oklch(0.58 0.24 27);
-  --destructive-foreground: oklch(0.96 0 0);
-  --border: oklch(0.2 0 0);
+  --accent-foreground: oklch(0.12 0 0);
+
+  --border: oklch(0.23 0 0);
   --input: oklch(0.18 0 0);
-  --ring: oklch(0.72 0.18 40);
-  --chart-1: oklch(0.72 0.18 40);
-  --chart-2: oklch(0.68 0.16 38);
-  --chart-3: oklch(0.65 0.18 40);
-  --chart-4: oklch(0.75 0.16 42);
-  --chart-5: oklch(0.8 0.18 45);
-  --sidebar: oklch(0.12 0 0);
-  --sidebar-foreground: oklch(0.96 0 0);
-  --sidebar-primary: oklch(0.72 0.18 40);
-  --sidebar-primary-foreground: oklch(0.96 0 0);
-  --sidebar-accent: oklch(0.22 0.01 50);
-  --sidebar-accent-foreground: oklch(0.96 0 0);
-  --sidebar-border: oklch(0.2 0 0);
-  --sidebar-ring: oklch(0.72 0.18 40);
+
+  --shadow-sm: 0 2px 8px rgba(255,255,255,0.04);
+  --shadow-md: 0 4px 16px rgba(255,255,255,0.06);
+  --shadow-lg: 0 8px 24px rgba(255,255,255,0.08);
 }
 
+/* =====================================================
+   THEME EXPORT (Tailwind Mapping)
+   ===================================================== */
 @theme inline {
-  --font-sans: "Geist", "Geist Fallback";
-  --font-mono: "Geist Mono", "Geist Mono Fallback";
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
+  --font-sans: "Geist", system-ui, sans-serif;
+  --font-mono: "Geist Mono", monospace;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* =====================================================
+   BASE LAYER (Improved Focus + Smooth Scroll)
+   ===================================================== */
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
+    scroll-behavior: smooth;
   }
+
+  /* Global focus ring (consistent everywhere) */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    overflow-x: hidden;
   }
 }
 
+/* =====================================================
+   COMPONENTS (Premium UI Enhancements)
+   ===================================================== */
 @layer components {
-  /* Enhanced animation and hover effects */
-  .card-hover {
-    @apply transition-all duration-300 hover:shadow-xl hover:scale-105 transform;
-  }
-
+  /* Modern button */
   .btn-primary {
-    @apply bg-primary text-primary-foreground px-4 py-2 rounded-lg font-medium hover:opacity-90 transition-all duration-200 active:scale-95;
+    @apply px-4 py-2 rounded-lg font-semibold text-white
+           bg-gradient-to-r from-primary to-accent
+           shadow-md hover:shadow-lg
+           transition-all duration-200
+           active:scale-95;
   }
 
-  /* New premium animation classes */
+  /* Elevated card */
+  .card-hover {
+    @apply rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-[1.02];
+  }
+
+  /* Smooth fade */
   .fade-in {
     @apply animate-in fade-in duration-500;
   }
 
+  /* Slide up */
   .slide-up {
     @apply animate-in slide-in-from-bottom-4 duration-500;
   }
 
+  /* Soft pop animation */
   .scale-in {
     @apply animate-in zoom-in duration-300;
   }
 
+  /* Premium glow hover */
+  .glow-hover:hover {
+    box-shadow: 0 0 18px -3px var(--primary);
+  }
+
+  /* Glassmorphism */
+  .glass-effect {
+    @apply backdrop-blur-xl bg-white/10 dark:bg-white/5 border border-white/20;
+  }
+
+  /* Gradient border wrapper */
+  .gradient-border {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    padding: 2px;
+    border-radius: var(--radius-lg);
+  }
+
+  /* Shimmer loader */
   .shimmer {
-    @apply relative overflow-hidden;
+    @apply relative overflow-hidden bg-foreground/5;
+  }
+
+  .shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
     background: linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.2) 50%,
-      rgba(255, 255, 255, 0) 100%
+      transparent,
+      rgba(255,255,255,0.25),
+      transparent
     );
-    background-size: 200% 100%;
-    animation: shimmer 2s infinite;
+    animation: shimmer 1.8s infinite;
   }
 
   @keyframes shimmer {
-    0% {
-      background-position: 200% 0;
-    }
-    100% {
-      background-position: -200% 0;
-    }
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+}
+
+/* =====================================================
+   UTILITIES (Extra quality-of-life helpers)
+   ===================================================== */
+@layer utilities {
+  .center-flex {
+    @apply flex items-center justify-center;
   }
 
-  .gradient-border {
-    @apply relative;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    padding: 1px;
+  .no-tap-highlight {
+    -webkit-tap-highlight-color: transparent;
   }
 
-  .glass-effect {
-    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  /* For iOS smoothness */
+  .momentum-scroll {
+    -webkit-overflow-scrolling: touch;
   }
+
+  /* Shadow elevation helpers */
+  .shadow-elevate-sm { box-shadow: var(--shadow-sm); }
+  .shadow-elevate-md { box-shadow: var(--shadow-md); }
+  .shadow-elevate-lg { box-shadow: var(--shadow-lg); }
 }
