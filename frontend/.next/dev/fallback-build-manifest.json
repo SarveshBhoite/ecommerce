@@ -1,6 +1,31 @@
 {
   "pages": {
-    "/_app": []
+    "/_app": [
+      "static/chunks/1f110_next_dist_compiled_543844f2._.js",
+      "static/chunks/1f110_next_dist_shared_lib_bbb3d320._.js",
+      "static/chunks/1f110_next_dist_client_47e029be._.js",
+      "static/chunks/1f110_next_dist_b45eb8f4._.js",
+      "static/chunks/1f110_next_app_53dbbd5d.js",
+      "static/chunks/[next]_entry_page-loader_ts_5f9b376f._.js",
+      "static/chunks/1f110_react-dom_e12e1646._.js",
+      "static/chunks/1f110_b2893f2d._.js",
+      "static/chunks/[root-of-the-server]__ff358b03._.js",
+      "static/chunks/Desktop_WD_ecommerce_frontend_pages__app_2da965e7._.js",
+      "static/chunks/turbopack-Desktop_WD_ecommerce_frontend_pages__app_c8a06264._.js"
+    ],
+    "/_error": [
+      "static/chunks/1f110_next_dist_compiled_543844f2._.js",
+      "static/chunks/1f110_next_dist_shared_lib_e74a4965._.js",
+      "static/chunks/1f110_next_dist_client_47e029be._.js",
+      "static/chunks/1f110_next_dist_2b3faf29._.js",
+      "static/chunks/1f110_next_error_1895ca49.js",
+      "static/chunks/[next]_entry_page-loader_ts_11a9f2b8._.js",
+      "static/chunks/1f110_react-dom_e12e1646._.js",
+      "static/chunks/1f110_b2893f2d._.js",
+      "static/chunks/[root-of-the-server]__6670f61e._.js",
+      "static/chunks/Desktop_WD_ecommerce_frontend_pages__error_2da965e7._.js",
+      "static/chunks/turbopack-Desktop_WD_ecommerce_frontend_pages__error_cab9c690._.js"
+    ]
   },
   "devFiles": [],
   "polyfillFiles": [],

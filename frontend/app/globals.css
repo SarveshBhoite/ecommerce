@@ -71,11 +71,32 @@
 }
 
 /* =====================================================
-   THEME EXPORT
+   THEME EXPORT — required for Tailwind v4 to generate utilities
    ===================================================== */
 @theme inline {
   --font-sans: "Geist", system-ui, sans-serif;
   --font-mono: "Geist Mono", monospace;
+
+  /* mapping ALL your CSS variables to Tailwind color utilities */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -84,11 +105,11 @@
 }
 
 /* =====================================================
-   BASE LAYER (Tailwind v4 FIXED)
+   BASE LAYER
    ===================================================== */
 @layer base {
   * {
-    border-color: var(--border); /* FIXED */
+    border-color: var(--border);
     scroll-behavior: smooth;
   }
 
@@ -108,8 +129,10 @@
    ===================================================== */
 @layer components {
   .btn-primary {
-    @apply px-4 py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-primary to-accent
-           shadow-md hover:shadow-lg transition-all duration-200 active:scale-95;
+    @apply px-4 py-2 rounded-lg font-semibold text-white 
+           bg-gradient-to-r from-primary to-accent 
+           shadow-md hover:shadow-lg 
+           transition-all duration-200 active:scale-95;
   }
 
   .card-hover {
@@ -151,7 +174,12 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,0.25),
+      transparent
+    );
     animation: shimmer 1.8s infinite;
   }
 
