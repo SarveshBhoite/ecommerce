@@ -1,80 +1,88 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import Link from "next/link"
-import { useAuth } from "@/lib/store"
-import { Lock, Mail, LogIn } from "lucide-react"
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useAuth } from "@/lib/store";
+import { Lock, Mail, LogIn } from "lucide-react";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [toastMessage, setToastMessage] = useState("")
-  const router = useRouter()
-  const setAuth = useAuth((state) => state.setAuth)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const router = useRouter();
+  const setAuth = useAuth((state) => state.setAuth);
 
   const showToast = (message: string) => {
-    setToastMessage(message)
-    setTimeout(() => setToastMessage(""), 3000)
-  }
+    setToastMessage(message);
+    setTimeout(() => setToastMessage(""), 3000);
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
-    setLoading(true)
+    e.preventDefault();
+    setError("");
+    setLoading(true);
 
     try {
       const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
-      })
+      });
 
-      const data = await response.json()
+      const data = await response.json();
 
       if (!response.ok) {
-        setError(data.message || "Login failed")
-        showToast(data.message || "Login failed")
-        return
+        setError(data.message || "Login failed");
+        showToast(data.message || "Login failed");
+        return;
       }
 
-      setAuth(data.token, { id: data.userId, email })
-      showToast("Login successful!")
-      setTimeout(() => router.push("/"), 500)
+      setAuth(data.token, { id: data.userId, email });
+      showToast("Login successful!");
+      setTimeout(() => router.push("/"), 500);
     } catch (err) {
-      const message = "An error occurred. Please try again."
-      setError(message)
-      showToast(message)
+      const message = "An error occurred. Please try again.";
+      setError(message);
+      showToast(message);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <div className="inline-block w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-4 shadow-lg">
-            <Lock size={46} className="text-white" />
-          </div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-balance">Welcome Back</h1>
-          <p className="text-muted-foreground mt-2">Sign in to access your account</p>
-        </div>
+    <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-accent/10 flex items-center justify-center p-4">
+      <div className="w-full max-w-md relative">
 
-        {/* Card */}
-        <div className="bg-card rounded-2xl shadow-xl p-6 sm:p-8 border border-border/50 backdrop-blur-sm">
-          <form onSubmit={handleLogin} className="space-y-5">
-            {/* Email Input */}
+        {/* Glass Card */}
+        <div className="backdrop-blur-xl bg-card/70 border border-white/10 shadow-2xl rounded-3xl p-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+
+          {/* Icon */}
+          <div className="flex flex-col items-center mb-8">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-xl">
+              <Lock size={32} className="text-white" />
+            </div>
+            <h1 className="text-3xl sm:text-4xl font-extrabold mt-4 tracking-tight">
+              Welcome Back
+            </h1>
+            <p className="text-muted-foreground mt-1">
+              Sign in to continue shopping
+            </p>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleLogin} className="space-y-6">
+
+            {/* Email */}
             <div>
-              <label className="block text-sm font-semibold mb-2 text-foreground">Email Address</label>
+              <label className="block text-sm font-semibold mb-2">Email Address</label>
               <div className="relative group">
                 <Mail
-                  className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors"
                   size={18}
                 />
                 <input
@@ -82,18 +90,18 @@ export default function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
-                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-secondary text-foreground placeholder-muted-foreground border-2 border-transparent focus:border-primary focus:outline-none transition-all duration-200"
+                  className="w-full pl-12 pr-4 py-3 rounded-xl bg-secondary/70 backdrop-blur border border-border/40 focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition-all text-base"
                   required
                 />
               </div>
             </div>
 
-            {/* Password Input */}
+            {/* Password */}
             <div>
-              <label className="block text-sm font-semibold mb-2 text-foreground">Password</label>
+              <label className="block text-sm font-semibold mb-2">Password</label>
               <div className="relative group">
                 <Lock
-                  className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors"
                   size={18}
                 />
                 <input
@@ -101,24 +109,24 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-secondary text-foreground placeholder-muted-foreground border-2 border-transparent focus:border-primary focus:outline-none transition-all duration-200"
+                  className="w-full pl-12 pr-4 py-3 rounded-xl bg-secondary/70 backdrop-blur border border-border/40 focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition-all text-base"
                   required
                 />
               </div>
             </div>
 
-            {/* Error Message */}
+            {/* Error */}
             {error && (
-              <div className="bg-destructive/10 border border-destructive/30 rounded-lg p-3 text-destructive text-sm font-medium">
+              <div className="bg-destructive/20 border border-destructive/40 text-destructive px-4 py-3 rounded-lg text-sm font-medium animate-in fade-in">
                 {error}
               </div>
             )}
 
-            {/* Submit Button */}
+            {/* Login Button */}
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-primary to-accent text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-200 disabled:opacity-50 active:scale-95 flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-xl bg-gradient-to-r from-primary to-accent text-white font-semibold tracking-wide shadow-lg hover:shadow-xl active:scale-95 transition-all duration-200 disabled:opacity-50 flex items-center justify-center gap-2"
             >
               <LogIn size={18} />
               {loading ? "Signing in..." : "Sign In"}
@@ -126,30 +134,28 @@ export default function LoginPage() {
           </form>
 
           {/* Divider */}
-          <div className="my-6 relative">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-border/50"></div>
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-card text-muted-foreground">Don't have an account?</span>
-            </div>
+          <div className="flex items-center my-8 gap-3">
+            <div className="flex-1 h-px bg-border" />
+            <span className="text-muted-foreground text-sm">New here?</span>
+            <div className="flex-1 h-px bg-border" />
           </div>
 
-          {/* Sign Up Link */}
+          {/* Register Button */}
           <Link
             href="/register"
-            className="w-full block text-center py-3 rounded-xl border-2 border-primary text-primary font-semibold hover:bg-primary/5 transition-all duration-200 hover:scale-105"
+            className="w-full block text-center py-3 rounded-xl border border-primary text-primary font-semibold hover:bg-primary/10 hover:shadow-md transition-all"
           >
-            Create Account
+            Create an Account
           </Link>
         </div>
       </div>
 
+      {/* Toast */}
       {toastMessage && (
-        <div className="fixed bottom-4 right-4 bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-xl shadow-2xl animate-in slide-in-from-bottom-4 duration-300 font-medium">
+        <div className="fixed bottom-4 right-4 bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-xl shadow-xl animate-in slide-in-from-bottom-4 duration-300">
           {toastMessage}
         </div>
       )}
     </div>
-  )
+  );
 }
