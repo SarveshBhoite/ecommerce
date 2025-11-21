@@ -70,7 +70,7 @@ export function ProductGrid({ products, isAuthenticated }: Props) {
               {/* Image Container */}
               <div className="relative w-full h-64 bg-secondary overflow-hidden group">
                 <img
-                  src={product.image_url || "/placeholder.svg"}
+                  src={product.image_url || "/classicwatch.jpg"}
                   alt={product.name}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />

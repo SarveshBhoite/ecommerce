@@ -360,7 +360,7 @@ function ProductGrid({ products, isAuthenticated }) {
                                     className: "relative w-full h-64 bg-secondary overflow-hidden group",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$WD$2f$ecommerce$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                                            src: product.image_url || "/placeholder.svg",
+                                            src: product.image_url || "/classicwatch.jpg",
                                             alt: product.name,
                                             className: "w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                         }, void 0, false, {
